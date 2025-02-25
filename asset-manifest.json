@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/vil_tools/static/css/main.cf890fdb.css",
+    "main.js": "/vil_tools/static/js/main.8bd7f382.js",
+    "static/js/453.337190ee.chunk.js": "/vil_tools/static/js/453.337190ee.chunk.js",
+    "index.html": "/vil_tools/index.html",
+    "main.cf890fdb.css.map": "/vil_tools/static/css/main.cf890fdb.css.map",
+    "main.8bd7f382.js.map": "/vil_tools/static/js/main.8bd7f382.js.map",
+    "453.337190ee.chunk.js.map": "/vil_tools/static/js/453.337190ee.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cf890fdb.css",
+    "static/js/main.8bd7f382.js"
+  ]
+}
