@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { Button, Checkbox, FormControlLabel, TextField, Typography, Container, Paper, Tabs, Tab } from '@mui/material';
+import { Button, Checkbox, FormControlLabel, TextField, Typography, Container, Paper, Tabs, Tab, Box } from '@mui/material';
 import { styled } from '@mui/system';
 import { vial2c } from './vial2c.js';
 
@@ -122,80 +122,89 @@ function App() {
     setSelectedTab(newValue);
   };
 
-
   return (
     <Container maxWidth="md">
-      <Typography variant="h5" component="h2" gutterBottom style={{textAlign: 'center'}}>
+      <Typography variant="h5" component="h2" gutterBottom style={{ textAlign: 'center' }}>
         VIL Tools
       </Typography>
-      <Tabs value={selectedTab} onChange={handleChangeTab} aria-label="basic tabs example" centered>
-        <Tab label="VIL Copy Items" />
-        <Tab label="VIL to Keymap.c" />
-      </Tabs>
+      <Box sx={{ display: 'flex' }}>
+        <Tabs
+          value={selectedTab}
+          onChange={handleChangeTab}
+          aria-label="basic tabs example"
+          orientation="vertical"
+          sx={{ borderRight: 1, borderColor: 'divider', width: '20%' }}
+        >
+          <Tab label="VIL Copy Items" />
+          <Tab label="VIL to Keymap.c" />
+        </Tabs>
 
-      {selectedTab === 0 && (
-        <StyledPaper elevation={3}>
-          <Typography variant="h6" component="h1" gutterBottom>
-            Source VIL
-          </Typography>
-          <TextField
-            type="file"
-            accept=".vil"
-            onChange={handleFileUploadA}
-            fullWidth
-            margin="normal"
-          />
-          <Typography variant="h6" component="h1" gutterBottom>
-            Target VIL
-          </Typography>
-          <TextField
-            type="file"
-            accept=".vil"
-            onChange={handleFileUploadB}
-            fullWidth
-            margin="normal"
-          />
+        <Box sx={{ width: '80%', padding: 2 }}>
+          {selectedTab === 0 && (
+            <StyledPaper elevation={3}>
+              <Typography variant="h6" component="h1" gutterBottom>
+                Source VIL
+              </Typography>
+              <TextField
+                type="file"
+                accept=".vil"
+                onChange={handleFileUploadA}
+                fullWidth
+                margin="normal"
+              />
+              <Typography variant="h6" component="h1" gutterBottom>
+                Target VIL
+              </Typography>
+              <TextField
+                type="file"
+                accept=".vil"
+                onChange={handleFileUploadB}
+                fullWidth
+                margin="normal"
+              />
 
-          <Typography variant="h6" component="h2" marginTop={3} marginBottom={1}>
-            Select Items to Copy:
-          </Typography>
-          {itemsToDisplay.map(item => (
-            <FormControlLabel
-              key={item}
-              control={
-                <Checkbox
-                  value={item}
-                  checked={selectedItems.includes(item)}
-                  onChange={() => handleCheckboxChange(item)}
+              <Typography variant="h6" component="h2" marginTop={3} marginBottom={1}>
+                Select Items to Copy:
+              </Typography>
+              {itemsToDisplay.map(item => (
+                <FormControlLabel
+                  key={item}
+                  control={
+                    <Checkbox
+                      value={item}
+                      checked={selectedItems.includes(item)}
+                      onChange={() => handleCheckboxChange(item)}
+                    />
+                  }
+                  label={item}
                 />
-            }
-            label={item}
-          />
-        ))}
+              ))}
 
-        <Button variant="contained" color="primary" onClick={downloadJson} disabled={selectedItems.length === 0}>
-          Download Modified VIL
-        </Button>
-      </StyledPaper>
-      )}
+              <Button variant="contained" color="primary" onClick={downloadJson} disabled={selectedItems.length === 0}>
+                Download Modified VIL
+              </Button>
+            </StyledPaper>
+          )}
 
-      {selectedTab === 1 && (
-        <StyledPaper elevation={3}>
-          <Typography variant="h6" component="h1" gutterBottom>
-            Convert VIL
-          </Typography>
-          <TextField
-            type="file"
-            accept=".vil"
-            onChange={handleFileUploadC}
-            fullWidth
-            margin="normal"
-          />
-          <Button variant="contained" color="primary" onClick={convertToC}>
-            Convert to keymap.c
-          </Button>
-        </StyledPaper>
-      )}
+          {selectedTab === 1 && (
+            <StyledPaper elevation={3}>
+              <Typography variant="h6" component="h1" gutterBottom>
+                Convert VIL
+              </Typography>
+              <TextField
+                type="file"
+                accept=".vil"
+                onChange={handleFileUploadC}
+                fullWidth
+                margin="normal"
+              />
+              <Button variant="contained" color="primary" onClick={convertToC}>
+                Convert to keymap.c
+              </Button>
+            </StyledPaper>
+          )}
+        </Box>
+      </Box>
     </Container>
   );
 }
