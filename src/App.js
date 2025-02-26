@@ -79,9 +79,17 @@ function App() {
     const jsonString = JSON.stringify(newJsonB, null, 2);
     const blob = new Blob([jsonString], { type: "application/json" });
     const url = URL.createObjectURL(blob);
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    const dateTimeString = `${year}-${month}-${day}_${hours}-${minutes}-${seconds}`;
     const a = document.createElement("a");
     a.href = url;
-    a.download = "modified.vil";
+    a.download = `modified_vial_layout_${dateTimeString}.vil`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
